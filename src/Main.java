@@ -1,13 +1,62 @@
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
-void main() {
-    //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-    // to see how IntelliJ IDEA suggests fixing it.
-    IO.println(String.format("Hello and welcome!"));
+/*
+При реализации каждого из заданий нужно обязательно выбрать класс
+из Java Collections Framework, который подходит для решения задачи.
 
-    for (int i = 1; i <= 5; i++) {
-        //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-        // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-        IO.println("i = " + i);
+Создать имитационную модель «причал морских катеров». Необходимо
+вводить следующую информацию:
+1. Среднее время между появлениями пассажиров на причале в разное время суток;
+2. Среднее время между появлениями катеров на причале в разное время суток;
+3. Тип остановки катера (конечная или нет).
+Необходимо определить:
+1. Среднее время пребывание человека на остановке;
+2. Достаточный интервал времени между приходами катеров, чтобы на
+остановке находилось не более N людей одновременно;
+3. Количество свободных мест в катере является случайной величиной.
+Задание 2
+Создать программу по работе со словарем. Например, англо-испанский
+или французско-немецкий, или любое другое направление. Программа должна:
+■	Обеспечивать начальный ввод данных для словаря;
+■	Позволять отобразить слово и его переводы;
+■	Позволять добавлять, заменять, удалять переводы слова;
+■	Позволять добавить, заменить, удалить слово;
+■	Отображать топ -10 самых популярных слов (определяем популярность
+    на основании счетчика обращений);
+■	Отображать топ-10 самых непопулярных слов (определяем непопулярность
+    на основании счетчика обращений).
+Задание 3
+Реализовать базу данных налоговой инспекции по штрафам. Идентифицировать
+конкретного человека будет его персональный идентификационный код.
+У одного человека может быть много штрафов.
+Реализовать:
+1.	Полная распечатка базы данных;
+2.	Распечатка данных по конкретному коду;
+3.	Распечатка данных по конкретному типу штрафа;
+4.	Распечатка данных по конкретному городу;
+5.	Добавление нового человека с информацией о нем;
+6.	Добавление новых штрафов для существующей записи;
+7.	Удаление штрафа;
+8.	Замена информации о человеке и его штрафах.
+ */
+void main() {
+    IO.println(String.format("ДОМАШНЕЕ ЗАДАНИЕ 4"));
+    DockSimulation dockSimulation = new DockSimulation();
+
+    for (int i = 0; i <= 86400; i++) {
+        System.out.print("\rВремя: " + secondsToTime(i));
+        try {
+            Thread.sleep(1); // задержка для наглядности
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
+
+}
+private static String secondsToTime(int totalSeconds) {
+    String currentTime = "";
+    int hours = totalSeconds / 3600; // 3600 секунд в одном часе
+    int minutes = (totalSeconds % 3600) / 60; // остаток после часов делим на 60
+    currentTime = hours<10 ? "0" + hours : "" + hours;
+    currentTime += ":";
+    currentTime += minutes<10 ? "0" + minutes : "" + minutes;
+    return currentTime;
 }
