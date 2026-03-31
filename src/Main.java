@@ -19,7 +19,7 @@
 ■	Позволять отобразить слово и его переводы;
 ■	Позволять добавлять, заменять, удалять переводы слова;
 ■	Позволять добавить, заменить, удалить слово;
-■	Отображать топ -10 самых популярных слов (определяем популярность
+■	Отображать топ-10 самых популярных слов (определяем популярность
     на основании счетчика обращений);
 ■	Отображать топ-10 самых непопулярных слов (определяем непопулярность
     на основании счетчика обращений).
@@ -36,19 +36,21 @@
 6.	Добавление новых штрафов для существующей записи;
 7.	Удаление штрафа;
 8.	Замена информации о человеке и его штрафах.
- */
+*/
 void main() {
     IO.println(String.format("ДОМАШНЕЕ ЗАДАНИЕ 4"));
-    DockSimulation dockSimulation = new DockSimulation();
+    DictionaryApplication.start();
 
-    for (int i = 0; i <= 86400; i++) {
-        System.out.print("\rВремя: " + secondsToTime(i));
-        try {
-            Thread.sleep(1); // задержка для наглядности
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-    }
+//    DockSimulation dockSimulation = new DockSimulation();
+//
+//    for (int i = 0; i <= 86400; i++) {
+//        System.out.print("\rВремя: " + secondsToTime(i));
+//        try {
+//            Thread.sleep(1); // задержка для наглядности
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
+//    }
 
 }
 private static String secondsToTime(int totalSeconds) {
