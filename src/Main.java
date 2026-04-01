@@ -39,26 +39,7 @@
 */
 void main() {
     IO.println(String.format("ДОМАШНЕЕ ЗАДАНИЕ 4"));
+    //DockSimulation.start();
     DictionaryApplication.start();
 
-//    DockSimulation dockSimulation = new DockSimulation();
-//
-//    for (int i = 0; i <= 86400; i++) {
-//        System.out.print("\rВремя: " + secondsToTime(i));
-//        try {
-//            Thread.sleep(1); // задержка для наглядности
-//        } catch (InterruptedException e) {
-//            e.printStackTrace();
-//        }
-//    }
-
-}
-private static String secondsToTime(int totalSeconds) {
-    String currentTime = "";
-    int hours = totalSeconds / 3600; // 3600 секунд в одном часе
-    int minutes = (totalSeconds % 3600) / 60; // остаток после часов делим на 60
-    currentTime = hours<10 ? "0" + hours : "" + hours;
-    currentTime += ":";
-    currentTime += minutes<10 ? "0" + minutes : "" + minutes;
-    return currentTime;
 }

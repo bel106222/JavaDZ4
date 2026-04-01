@@ -1,4 +1,5 @@
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class DictionaryApplication {
     private static Map<String, WordEntry> dictionary = new HashMap<>();
@@ -46,13 +47,13 @@ public class DictionaryApplication {
                     addWordAndTranslation();
                     break;
                 case 3:
-                    //replaceTranslation();
+                    replaceTranslation();
                     break;
                 case 4:
-                    //removeWord();
+                    removeWord();
                     break;
                 case 5:
-                    //showTop();
+                    showTop();
                     break;
                 case 6:
                     showAll();
@@ -62,6 +63,52 @@ public class DictionaryApplication {
         System.out.println("Выход...");
     }
 
+    private static void showTop() {
+        // Сортируем слова по популярности (от большего к меньшему) и берём первые 10
+        List<Map.Entry<String, WordEntry>> sortedEntries = dictionary.entrySet()
+                .stream()
+                .sorted((e1, e2) -> Integer.compare(e2.getValue().getCounter(),
+                        e1.getValue().getCounter()))
+                .limit(10)
+                .collect(Collectors.toList());
+
+        System.out.println("\n=== ТОП-10 САМЫХ ПОПУЛЯРНЫХ СЛОВ ===");
+        if (sortedEntries.isEmpty()) {
+            System.out.println("Словарь пуст.");
+            return;
+        }
+        int rank = 1;
+        for (Map.Entry<String, WordEntry> entry : sortedEntries) {
+            // Показываем только слова, к которым были обращения
+            if (entry.getValue().getCounter() > 0) {
+                System.out.printf("%d. %s - %d обращений%n",
+                        rank++, entry.getKey(), entry.getValue().getCounter());
+            }
+        }
+    }
+    private static void removeWord() {
+        String word = getStringInput("Введите слово для удаления: ").toLowerCase();
+
+        if (dictionary.containsKey(word)) {
+            dictionary.remove(word);
+            System.out.println("Слово '" + word + "' удалено из словаря.");
+        } else {
+            System.out.println("Слово не найдено.");
+        }
+    }
+    private static void replaceTranslation() {
+        String word = getStringInput("Введите слово: ").toLowerCase();
+        WordEntry entry = dictionary.get(word);
+        if (entry != null) {
+            System.out.println("Текущий перевод: " + entry.translate);
+            String newTranslation = getStringInput("Введите новый перевод: ");
+
+            entry.translate = newTranslation;
+            System.out.println("Перевод заменен. Новый перевод: " + entry.translate);
+        } else {
+            System.out.println("Слово не найдено.");
+        }
+    }
     private static void addWordAndTranslation() {
         String word = getStringInput("Введите новое слово:>").toLowerCase();
         // Проверяем, не существует ли уже такое слово
